@@ -28,9 +28,8 @@ pipeline {
         }
         stage('Staging') {
             steps {
-                sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid "
-              + "|| kill -KILL \$pid"
-                sh 'nohup mvn spring-boot:run -Dserver.port=8989 &'
+                sh 'pid=\$(lsof -i:8989 -t); kill -9 \$pid'
+                sh 'mvn spring-boot:run -Dserver.port=8989 &'
             }
         }
     }
