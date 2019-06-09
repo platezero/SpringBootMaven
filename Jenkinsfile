@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh -Dserver.port=8989'
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
