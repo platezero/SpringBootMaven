@@ -23,8 +23,12 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh --server.port=8083'
+                sh 'ls -l'
             }
+        }
+        stage("Staging") {
+                sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid || kill -KILL \$pid"
+                sh 'nohup mvn spring-boot:run -Dserver.port=8989 &'
         }
     }
 }
