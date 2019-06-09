@@ -23,12 +23,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh 'ls -l'
-            }
-        }
-        stage('Staging') {
-            steps {
-                sh 'mvn spring-boot:run -Dserver.port=8989 &'
+                sh './jenkins/scripts/deliver.sh -Dserver.port=8989'
             }
         }
     }
