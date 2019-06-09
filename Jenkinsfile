@@ -26,9 +26,11 @@ pipeline {
                 sh 'ls -l'
             }
         }
-        stage("Staging") {
+        stage('Staging') {
+            steps {
                 sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid || kill -KILL \$pid"
                 sh 'nohup mvn spring-boot:run -Dserver.port=8989 &'
+            }
         }
     }
 }
